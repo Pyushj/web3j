@@ -507,11 +507,20 @@ public class StructuredDataEncoder {
 
         return baos.toByteArray();
     }
+    
+    
 
     @SuppressWarnings("unchecked")
     public byte[] hashStructuredData() throws RuntimeException {
         return sha3(getStructuredData());
     }
+    
+    //return hex Sign same as metamask libraries
+    public String eip712hashStructuredData() throws ValidationException {
+
+        byte[] result=hashStructuredData();
+        return Numeric.toHexString(result);
+        }
 
     private static byte[] convertArgToBytes(String inputValue) throws Exception {
         String hexValue = inputValue;
